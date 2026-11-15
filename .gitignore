@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+
+# Xcode
+xcuserdata/
+*.xcuserstate
+build/
+DerivedData/
+*.xcframework/
+.swiftpm/
+
+# Python
+__pycache__/
+.venv/
+*.pyc
+
+# Never commit API keys
+*.env
+secrets*

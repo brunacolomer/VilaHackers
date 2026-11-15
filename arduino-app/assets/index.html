@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Control RayBan</title>
+<style>
+  body { font-family: -apple-system, sans-serif; padding: 30px; background: #111; color: #fff; max-width: 480px; margin: auto; }
+  .row { margin: 24px 0; }
+  label { display: flex; justify-content: space-between; font-size: 20px; font-weight: 600; }
+  input[type=range] { width: 100%; height: 40px; }
+  p { color: #aaa; }
+</style>
+</head>
+<body>
+  <h1>Control RayBan</h1>
+  <p>Prova manual: si aquests controls funcionen, l'iPhone també podrà.</p>
+  <div id="devices"></div>
+  <div class="row"><button onclick="fetch('/device?name=eye&value=1')">Obre l'ull</button> <button onclick="fetch('/device?name=eye&value=0')">Tanca l'ull</button></div>
+<script>
+  const names = { lamp1: "Llum 1 (D9)", lamp2: "Llum 2 (D5)" };
+  const box = document.getElementById("devices");
+  for (const [key, title] of Object.entries(names)) {
+    box.insertAdjacentHTML("beforeend", `
+      <div class="row">
+        <label>${title} <span id="v-${key}">–</span></label>
+        <input type="range" min="0" max="100" step="10" id="r-${key}">
+      </div>`);
+    document.getElementById(`r-${key}`).addEventListener("change", e => send(key, e.target.value));
+  }
+  function show(state) {
+    for (const key of Object.keys(names)) {
+      document.getElementById(`v-${key}`).textContent = state[key] + "%";
+      document.getElementById(`r-${key}`).value = state[key];
+    }
+  }
+  async function send(name, value) {
+    const r = await fetch(`/device?name=${name}&value=${value}`);
+    show(await r.json());
+  }
+  fetch("/device").then(r => r.json()).then(show);
+</script>
+</body>
+</html>

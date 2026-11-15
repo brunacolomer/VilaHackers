@@ -1,0 +1,5 @@
+name: Bateria Ulleres
+icon: "L"
+description: Rep les ordres de les ulleres Meta (via l'iPhone) i controla dos LEDs i l'ull de la matriu.
+bricks:
+  - arduino:web_ui
