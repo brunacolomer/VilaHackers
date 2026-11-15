@@ -90,8 +90,19 @@ well when the venue's Wi-Fi isolates clients from each other.
 
 ## Credits and licence
 
-The iOS app is built on the `CameraAccess` sample from
-[meta-wearables-dat-ios](https://github.com/facebook/meta-wearables-dat-ios);
-Meta's `LICENSE` and `NOTICE` are kept at the root of this repository. Hand
-tracking uses Google's MediaPipe Hand Landmarker, and scene understanding uses
-the Gemini API.
+This project stands on other people's work:
+
+- The iOS app is built on the `CameraAccess` sample from
+  [meta-wearables-dat-ios](https://github.com/facebook/meta-wearables-dat-ios),
+  which it also links as a dependency. Meta's `LICENSE` and `NOTICE` are kept at
+  the root of this repository.
+- Hand tracking uses **Google's MediaPipe** Tasks Vision (Apache 2.0). The Hand
+  Landmarker model, `ios-app/CameraAccess/hand_landmarker.task`, is Google's and
+  is redistributed here under that licence, a copy of which is in
+  `LICENSE-APACHE-2.0`.
+- Scene understanding calls the **Gemini API**. No key is included here.
+- The Arduino app uses `Arduino_RouterBridge` and `Arduino_LED_Matrix`, supplied
+  by Arduino App Lab on the board.
+
+`THIRD-PARTY-NOTICES.md` spells out each of these, including which parts are
+stored in this repository and which are downloaded at build time.
