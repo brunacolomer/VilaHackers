@@ -1,4 +1,4 @@
-# Look to control
+# HANDi
 
 Smart glasses that let you control the room by looking at it.
 
